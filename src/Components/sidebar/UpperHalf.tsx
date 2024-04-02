@@ -14,7 +14,7 @@ export default function UpperHalf(){
               </button>
            </div>
 
-           <div className="w-full h-[60%] flex justify-center mt-4">
+           <div className="w-full h-[60%] flex justify-center mt-12">
                 <img 
                     src={cloudnight}
                     className="w-[60%] h-full"

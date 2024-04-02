@@ -11,11 +11,12 @@ export default function Sidebar(){
           
           <UpperHalf/>
 
-          <div className="h-[1px] w-[87%] bg-[#e9ecef] mt-8 rounded-md">
+          <div
+             className="h-[2px] w-[87%]
+                     bg-[#e9ecef] mt-2 rounded-md">    
+            </div>
 
-        </div>
-
-        <LowerHalf/>
+          <LowerHalf/>
 
         </div>
     );

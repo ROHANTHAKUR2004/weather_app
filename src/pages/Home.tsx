@@ -5,7 +5,7 @@ export default function Home(){
     return(
         <div className="h-[100vh]"
          style={{backgroundImage : `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${nightimg})`}}>
-           <div className="h-[90%]  mx-8 py-8 flex flex-row justify-center items-center" >
+           <div className="h-[97%]  mx-8 py-8 flex flex-row justify-center items-center" >
             <Sidebar/>
             <MainData/>
         </div>

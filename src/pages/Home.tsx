@@ -1,5 +1,5 @@
-import MainData from "../Components/MainData";
-import Sidebar from "../Components/Sidebar";
+import MainData from "../Components/Maindata/MainData";
+import Sidebar from "../Components/sidebar/Sidebar";
 import nightimg from '../Assets/nightimg.jpg';
 export default function Home(){
     return(

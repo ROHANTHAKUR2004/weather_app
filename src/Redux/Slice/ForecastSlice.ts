@@ -5,8 +5,33 @@ import axiosinstance from "../../Config/axiosInstance";
 
 const initialState : ForecastDataState = {
     status : 'default',
-    data :  undefined,
-}
+    data :  {
+        location: {
+            country  : '',
+            region : '',
+            name : '',
+            localtime : '',
+
+        },
+        dayforecast :[],
+        currentData : {
+            uv :      0,
+            wind_kmph :    0,
+            humidity :    0,
+            vis_km :    0,
+            aqi :   0, 
+            sunrise :   '', 
+            sunset :  '', 
+            temp_c :  0,
+            temp_f :   0, 
+            condition :  '', 
+            isDay :   false,
+            chance_of_rain :   0,
+          }
+        },
+
+    }
+
 
 
 export const fetchData = createAsyncThunk('data/fetcghdata',  async() => {
@@ -27,7 +52,46 @@ const forecastSlice = createSlice({
     reducers : {},
     extraReducers: (builder) => {
         builder.addCase(fetchData.fulfilled, ( state , action )=>{
+            state.status = "success";
             if(!action.payload) return ;
+          
+            const {location,forecast, current} = action.payload.data;
+
+            state.data.location.country = location?.country
+            state.data.location.region = location?.region
+            state.data.location.localtime = location?.localtime
+            state.data.location.name = location?.name
+
+
+        state.data.dayforecast = forecast.forecastday.map((foreCastitem: any) =>{
+             return {
+                date :  foreCastitem.date,
+                avgtemp_c : foreCastitem.day.avgtemp_c,
+                avgtemp_f : foreCastitem.day.avgtemp_f,
+                condition : foreCastitem.day.condition.text
+             }
+
+        });
+
+        state.data.currentData.uv  = current.uv;
+        state.data.currentData.wind_kmph = current.wind_kph;
+        state.data.currentData.humidity  = current.humidity;
+        state.data.currentData.vis_km  = current.vis_km;
+        state.data.currentData.aqi    =current.air_quality.pm_5;
+        state.data.currentData.temp_c  = current.temp_c;
+        state.data.currentData.temp_f   = current.temp_f;
+        state.data.currentData.isDay  = current.is_day;
+        state.data.currentData.condition  = current.condition.text;
+        state.data.currentData.sunrise  = forecast.forecastday[0].astro.sunrise;
+        state.data.currentData.sunset  = forecast.forecastday[0].astro.sunset;
+        state.data.currentData.chance_of_rain = forecast.forecastday[0].day.daily_chance_of_rain;
+        
+
+
+
+        })
+        .addCase(fetchData.pending, (state) => {
+            state.status = 'loading';
         })
 
     }

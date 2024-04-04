@@ -27,6 +27,7 @@ const initialState : ForecastDataState = {
             condition :  '', 
             isDay :   false,
             chance_of_rain :   0,
+            icon : '',
           }
         },
 
@@ -68,7 +69,8 @@ const forecastSlice = createSlice({
                 date :  foreCastitem.date,
                 avgtemp_c : foreCastitem.day.avgtemp_c,
                 avgtemp_f : foreCastitem.day.avgtemp_f,
-                condition : foreCastitem.day.condition.text
+                condition : foreCastitem.day.condition.text,
+                icon : foreCastitem.day.condition.icon
              }
 
         });
@@ -85,7 +87,7 @@ const forecastSlice = createSlice({
         state.data.currentData.sunrise  = forecast.forecastday[0].astro.sunrise;
         state.data.currentData.sunset  = forecast.forecastday[0].astro.sunset;
         state.data.currentData.chance_of_rain = forecast.forecastday[0].day.daily_chance_of_rain;
-        
+        state.data.currentData.icon = current.condition.icon;
 
 
 

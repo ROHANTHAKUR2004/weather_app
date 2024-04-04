@@ -34,9 +34,9 @@ const initialState : ForecastDataState = {
 
 
 
-export const fetchData = createAsyncThunk('data/fetcghdata',  async() => {
+export const fetchData = createAsyncThunk('data/fetcghdata',  async(city : string) => {
     try {
-        const response =  await axiosinstance.get(`forecast.json?key=995967ca3cd04f8f92a32058240204&days=7&aqi=yes&q=Bhopal`)
+        const response =  await axiosinstance.get(`forecast.json?key=995967ca3cd04f8f92a32058240204&days=7&aqi=yes&q=${city}`)
        console.log(response);
        return response;
     }
@@ -49,7 +49,7 @@ export const fetchData = createAsyncThunk('data/fetcghdata',  async() => {
 const forecastSlice = createSlice({
     name : 'forecast',
     initialState ,
-    reducers : {},
+    reducers : { },
     extraReducers: (builder) => {
         builder.addCase(fetchData.fulfilled, ( state , action )=>{
             state.status = "success";
@@ -77,7 +77,7 @@ const forecastSlice = createSlice({
         state.data.currentData.wind_kmph = current.wind_kph;
         state.data.currentData.humidity  = current.humidity;
         state.data.currentData.vis_km  = current.vis_km;
-        state.data.currentData.aqi    =current.air_quality.pm_5;
+        state.data.currentData.aqi    = current.air_quality.pm2_5;
         state.data.currentData.temp_c  = current.temp_c;
         state.data.currentData.temp_f   = current.temp_f;
         state.data.currentData.isDay  = current.is_day;
@@ -96,6 +96,7 @@ const forecastSlice = createSlice({
 
     }
 });
+
 
 
 export default forecastSlice.reducer;

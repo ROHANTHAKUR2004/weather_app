@@ -29,9 +29,9 @@ export default function UpperHalf(){
     
     return(
       <div className="max-h-[30rem] w-full p-4 flex flex-col justify-center items-start basis-[65%]">
-           <div className="flex flex-start w-full mt-4">
+           <div className="flex flex-start   w-full sm:m-0 mt-4">
               <input 
-                 className="px-2 py-2 rounded-tl-md rounded-bl-md block basis-[90%] bg-white text-black"
+                 className="px-2 py-2 rounded-tl-md rounded-bl-md block basis-[90%] bg-white sm:w-4 sm:items-start text-black"
                  placeholder="Search.."
                  type="text"
                  onChange={(e) =>{

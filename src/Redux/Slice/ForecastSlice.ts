@@ -14,6 +14,8 @@ const initialState : ForecastDataState = {
 
         },
         dayforecast :[],
+        hourforecast : [],
+    
         currentData : {
             uv :      0,
             wind_kmph :    0,
@@ -70,10 +72,24 @@ const forecastSlice = createSlice({
                 avgtemp_c : foreCastitem.day.avgtemp_c,
                 avgtemp_f : foreCastitem.day.avgtemp_f,
                 condition : foreCastitem.day.condition.text,
-                icon : foreCastitem.day.condition.icon
+                icon : foreCastitem.day.condition.icon,
              }
 
         });
+
+       
+
+    const todayDate = new Date().toISOString().slice(0, 10);
+    const todayHourlyForecasts = forecast.forecastday.find((forecastDay: any) => forecastDay.date === todayDate)?.hour || [];
+    
+    state.data.hourforecast = todayHourlyForecasts.map((hour: any) => ({
+        time: hour.time,
+        temp_c: hour.temp_c,
+        temp_f: hour.temp_f,
+        condition: hour.condition.text,
+        icon: hour.condition.icon,
+    }));
+        
 
         state.data.currentData.uv  = current.uv;
         state.data.currentData.wind_kmph = current.wind_kph;
@@ -89,8 +105,9 @@ const forecastSlice = createSlice({
         state.data.currentData.chance_of_rain = forecast.forecastday[0].day.daily_chance_of_rain;
         state.data.currentData.icon = current.condition.icon;
 
+          //hours data 
 
-
+         
         })
         .addCase(fetchData.pending, (state) => {
             state.status = 'loading';

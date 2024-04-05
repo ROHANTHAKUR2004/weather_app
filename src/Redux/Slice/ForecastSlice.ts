@@ -27,7 +27,7 @@ const initialState : ForecastDataState = {
             temp_c :  0,
             temp_f :   0, 
             condition :  '', 
-            isDay :   false,
+            isDay :   0,
             chance_of_rain :   0,
             icon : '',
           }

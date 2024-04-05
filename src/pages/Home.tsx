@@ -12,7 +12,7 @@ export default function Home(){
 
     const dispatch = useAppDispatch();
     const[city , setcity]= useState<string>("");
-    const currentData = useSelector((state: REduxstate) => state.forecast.data.currentData)
+    const currentData = useSelector((state: REduxstate) => state.forecast.data.currentData );
 
     useEffect(()=>{
         navigator.geolocation.getCurrentPosition( async(pos) =>{
@@ -42,3 +42,4 @@ export default function Home(){
         </div>
     )
 }
+

@@ -14,18 +14,18 @@ export default function UpperHalf(){
 
    const dispatch = useAppDispatch();
 
-  async function handlesearch(){
-     await dispatch(fetchData(city));
+  function handlesearch(){
+      dispatch(fetchData(city));
    }
 
    useEffect(()=>{
     handlesearch();
-   },[]);
+   });
 
     const currentData = useSelector((state: REduxstate) => state.forecast.data.currentData)
     const localtiondata = useSelector((state : REduxstate) => state.forecast.data.location);
     
-    const convertTime = inputTime => new Date(inputTime).toLocaleString('en-US', { weekday: 'long', hour: 'numeric', minute: 'numeric' });
+    const convertTime = (inputTime : string)=> new Date(inputTime).toLocaleString('en-US', { weekday: 'long', hour: 'numeric', minute: 'numeric' });
     
     return(
       <div className="max-h-[30rem] w-full p-4 flex flex-col justify-center items-start basis-[65%]">

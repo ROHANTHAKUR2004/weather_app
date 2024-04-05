@@ -9,7 +9,7 @@ export default interface CurrentDayForecast{
     temp_c : number,
     temp_f : number,
     condition : string,
-    isDay : boolean,
+    isDay : number,
     chance_of_rain : number,
     icon : string
 }
